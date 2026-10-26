@@ -19,7 +19,27 @@
 
 ## 快速开始
 
-### 0. 准备
+### 方式一：Docker（推荐，一条命令）
+
+```bash
+git clone https://github.com/xinghuoseo/simple-wms.git
+cd simple-wms
+docker compose up -d --build
+```
+
+然后创建管理员账号：
+
+```bash
+docker compose exec app python seed_admin.py   # 一路回车 = admin/admin123
+```
+
+打开 http://localhost:39800 即可使用。数据库数据存在 docker 卷 `dbdata` 中，重启不丢。
+
+> 生产环境请修改 docker-compose.yml 里的 `MYSQL_PASSWORD` 和 `SECRET_KEY`。
+
+### 方式二：手动部署
+
+#### 0. 准备
 
 ```bash
 # 需要：Python 3.11+，Node.js 18+，MySQL 8
