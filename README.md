@@ -19,25 +19,31 @@
 
 ## 快速开始
 
-### 方式一：Docker（推荐，一条命令）
+### 方式一：Docker 一键部署（推荐，无需克隆源码）
+
+装好 [Docker](https://docs.docker.com/get-docker/) 后，任意目录执行：
+
+```bash
+curl -O https://raw.githubusercontent.com/xinghuoseo/simple-wms/main/docker-compose.standalone.yml
+docker compose -f docker-compose.standalone.yml up -d
+docker compose -f docker-compose.standalone.yml exec app python seed_admin.py   # 一路回车 = admin/admin123
+```
+
+打开 http://localhost:39800 即可使用。数据存在 docker 卷中，重启/升级不丢（升级：重新执行 `up -d` 拉取最新镜像）。
+
+> Windows 用户把 `curl -O` 换成浏览器下载该 yml 文件即可。
+> 生产环境请修改 yml 里的 `MYSQL_PASSWORD` 和 `SECRET_KEY`。
+
+### 方式二：克隆源码构建
 
 ```bash
 git clone https://github.com/xinghuoseo/simple-wms.git
 cd simple-wms
 docker compose up -d --build
+docker compose exec app python seed_admin.py
 ```
 
-然后创建管理员账号：
-
-```bash
-docker compose exec app python seed_admin.py   # 一路回车 = admin/admin123
-```
-
-打开 http://localhost:39800 即可使用。数据库数据存在 docker 卷 `dbdata` 中，重启不丢。
-
-> 生产环境请修改 docker-compose.yml 里的 `MYSQL_PASSWORD` 和 `SECRET_KEY`。
-
-### 方式二：手动部署
+### 方式三：手动部署（开发模式）
 
 #### 0. 准备
 

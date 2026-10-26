@@ -1,0 +1,40 @@
+# 一键部署：无需克隆源码、无需本地编译
+# 使用：
+#   mkdir wms && cd wms
+#   curl -O https://raw.githubusercontent.com/xinghuoseo/simple-wms/main/docker-compose.standalone.yml
+#   docker compose -f docker-compose.standalone.yml up -d
+#   docker compose -f docker-compose.standalone.yml exec app python seed_admin.py
+# 打开 http://localhost:39800
+
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: ifungoo_erp
+      MYSQL_USER: wms
+      MYSQL_PASSWORD: wms_pass_123
+      MYSQL_ROOT_PASSWORD: root_pass_123
+    volumes:
+      - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 10
+
+  app:
+    image: ghcr.io/xinghuoseo/simple-wms:latest
+    ports:
+      - "39800:39800"
+    environment:
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_USER: wms
+      DB_PASSWORD: wms_pass_123
+      DB_NAME: ifungoo_erp
+      SECRET_KEY: please-change-me-to-a-random-string
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  dbdata:
