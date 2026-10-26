@@ -1,0 +1,32 @@
+# 环境与密钥
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# 临时/本地文件
+_*.py
+_*.sql
+*.log
+.screenshots/
+
+# 原始数据（含业务数据，不入库）
+*.xlsx
+
+# 前端
+frontend/node_modules/
+frontend/dist/
+
+# 部署脚本含服务器密码，只上传模板
+deploy.ps1
+start_erp.sh
+
+# 数据库内容
+*.sql
+!docs/*.sql
+
+# 系统文件
+Thumbs.db
+.DS_Store

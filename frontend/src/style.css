@@ -1,0 +1,60 @@
+/* 主题：对齐 ifungoo-ERP 后台风格（白顶栏/白侧栏 + 浅灰背景 #f0f2f5 + 靛紫强调色 #667eea） */
+:root {
+  --el-color-primary: #667eea;
+  --el-color-primary-light-3: #8ba0f2;
+  --el-color-primary-light-5: #b2c0f6;
+  --el-color-primary-light-7: #d9e0fa;
+  --el-color-primary-light-8: #e8ecfc;
+  --el-color-primary-light-9: #eef2ff;
+  --el-color-primary-dark-2: #5265c8;
+
+  --el-table-header-bg-color: #fafafa;
+  --el-table-header-text-color: #6b7280;
+  --el-table-row-hover-bg-color: #f9fafb;
+  --el-table-border-color: #ebeef5;
+}
+
+body {
+  margin: 0;
+  background: #f0f2f5;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+}
+
+/* 卡片与弹窗：圆角 + 细分隔线 */
+.el-card {
+  border-radius: 10px;
+  border: 1px solid #ebeef5;
+}
+
+.el-dialog {
+  border-radius: 12px;
+}
+.el-dialog__header {
+  border-bottom: 1px solid #f0f1f5;
+  padding-bottom: 14px;
+  margin-right: 0;
+}
+
+/* 表头弱化：小号灰字 */
+.el-table th.el-table__cell {
+  font-weight: 500;
+  font-size: 12px;
+}
+
+/* 详情弹窗底部按钮：打印靠左，关闭靠右 */
+.el-dialog__footer { display: flex; justify-content: space-between; align-items: center; }
+.el-dialog__footer .footer-left { flex: 1; text-align: left; }
+.el-dialog__footer .dialog-footer { margin-left: auto; }
+
+/* 打印：只输出弹窗内容 */
+.print-only { display: none; }
+@media print {
+  body * { visibility: hidden !important; }
+  .print-area, .print-area * { visibility: visible !important; }
+  .print-area {
+    position: absolute !important;
+    left: 0; top: 0; width: 100%;
+    padding: 12px;
+  }
+  .print-only { display: block; margin-bottom: 10px; font-size: 16px; font-weight: 700; }
+}
