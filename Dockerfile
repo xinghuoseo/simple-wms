@@ -16,4 +16,4 @@ COPY main.py seed_admin.py ./
 COPY --from=frontend /app/dist ./frontend/dist
 
 EXPOSE 39800
-CMD ["python", "main.py"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "39800"]
