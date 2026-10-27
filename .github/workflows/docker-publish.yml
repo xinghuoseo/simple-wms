@@ -3,6 +3,14 @@ name: Build & Publish Docker Image
 on:
   push:
     branches: [main]
+    paths:
+      - 'app/**'
+      - 'frontend/**'
+      - 'main.py'
+      - 'requirements.txt'
+      - 'Dockerfile'
+      - '.dockerignore'
+      - '.github/workflows/docker-publish.yml'
   workflow_dispatch:
 
 permissions:

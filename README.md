@@ -31,6 +31,8 @@ docker compose -f docker-compose.standalone.yml exec app python seed_admin.py   
 
 打开 http://localhost:39800 即可使用。数据存在 docker 卷中，重启/升级不丢（升级：重新执行 `up -d` 拉取最新镜像）。
 
+镜像地址：`ghcr.io/xinghuoseo/simple-wms:latest`（由 GitHub Actions 自动构建，公开可直接拉取）。
+
 > Windows 用户把 `curl -O` 换成浏览器下载该 yml 文件即可。
 > 生产环境请修改 yml 里的 `MYSQL_PASSWORD` 和 `SECRET_KEY`。
 
