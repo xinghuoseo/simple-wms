@@ -23,9 +23,10 @@ frontend/dist/
 deploy.ps1
 start_erp.sh
 
-# 数据库内容
+# 数据库内容（保留结构迁移脚本）
 *.sql
 !docs/*.sql
+!migrations/*.sql
 
 # 系统文件
 Thumbs.db
